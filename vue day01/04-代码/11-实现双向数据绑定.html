@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    视图-----》  数据跟着变
+    数据-----》  视图跟着变
+  -->
+
+  <!-- 视图 -->
+  <p></p>
+  <input type="text">
+
+  <script>
+    // 数据
+    const data = {
+      msg: '哈哈哈'
+    }
+
+    const p =  document.querySelector('p')
+    const input = document.querySelector('input')
+    p.innerText = data.msg
+    input.value = data.msg
+    /* 表单的内容发生了改变（视图）  ======》  数据跟着变 */
+    // 键盘弹起的时候触发, 不管弹起的什么键，都会触发
+    // input.addEventListener("keyup", function() {
+    //   console.log('keyup')
+    // })
+
+    // 当input框中的内容改变的时候会触发， 只有在改变完成的时候才触发
+    // input.addEventListener('change', function() {
+    //   console.log('change')
+    // })
+    // 只要往input框中输入内容就会触发
+    input.addEventListener('input', function() {
+      console.log('input')
+      data.msg = input.value
+      console.log(data.msg)
+    })
+
+    // 怎么知道对象的某个数据发生了改变？？？？
+    // 1. angularjs 1  脏数据检查机制  轮询  缺点： 性能比较低   兼容ie8
+    //    angluar 2   8
+
+    // 2. 数据劫持  ES5中的语法： Object.defineProperty()  这个无法被修复 vue不兼容ie678
+    // 数据发生了改变-------》视图跟着变
+    // 劫持data的msg属性
+    let temp = data.msg
+    Object.defineProperty(data, 'msg', {
+      get() {
+        return temp
+      },
+      set(value) {
+        temp = value
+        // 表示data.msg的值发生了改变
+        // 让p标签的内容发生改变
+        p.innerText = value
+        input.value = value
+      }
+    })
+  </script>
+
+</body>
+</html>

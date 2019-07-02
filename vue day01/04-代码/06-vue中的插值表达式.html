@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1. vue中插值表达式的概念
+      {{}}在vue中就叫插值表达式， 小胡子语法  mustache语法
+      作用：可以在视图中显示data中的数据
+    2. vue中插值表达式的语法
+      {{msg}}
+      {{car.brand}}
+      {{car.price + 100}}
+      {{三元运算符}}
+    3. vue中插值表达式的注意点
+      {{}}中使用的数据必须在data中存在
+      {{}} 虽然能够使用表达式， 不能出现js的语句，不能在{{}}中写if for
+      {{}} 不能在属性中使用
+   -->
+  <div id="app">
+    <h1>{{msg}}</h1>
+    <p>大家好---{{msg}}</p>
+    <p>{{car.brand.toUpperCase()}} -----{{car.price + 100}}</p>
+    <p>{{ age >= 18 ? '成年': '未成年'}}</p>
+
+    <hr>
+    <!-- <p>{{ gender }}</p> -->
+    <!-- <p>{{ for(var i = 0; i < 10; i++) {} }}</p> -->
+    <div title="{{msg}}">嘻嘻嘻</div>
+  </div>
+  <!-- 
+    es6 中模板字符串 
+    const str = `我是${name}`
+    vue把{{}} 叫做插值表达式 
+  -->
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        car: {
+          brand: 'forever',
+          price: 400
+        },
+        age: 18
+      }
+    })
+  </script>
+</body>
+</html>

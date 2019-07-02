@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+   <div id="app">
+     <!-- 1. 给翻转案例注册点击事件 -->
+     <button @click="reverse">翻转</button>
+     <p>{{msg}}</p>
+   </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello vue!'
+      },
+      methods: {
+        // methods中的所有的方法内部的this都指向vm
+        // vue源码内部  reverse.bind(vm)
+        reverse() {
+          // 翻转msg
+          // js基础
+          // 1. 字符串没有reverse方法
+          // 2. 数组有reverse方法
+          // 3. 字符串有一个方法 split() 切割一个字符串变成数组
+          // 4. 数组有个reverse方法，可以翻转
+          // 5. 数组有个join方法，可以拼成字符串
+          // console.log(this.msg)
+          this.msg = this.msg.split('').reverse().join('')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

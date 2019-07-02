@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+   <div id="app">
+     <!-- 注册事件 -->
+     <button @click="start">跑</button>
+     <button @click="stop">停</button>
+     <h1>{{msg}}</h1>
+   </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '小龙虾29.8一斤，买3斤送1斤！',
+        timeId: ''
+      },
+      methods: {
+        start() {
+          // clearInterval(this.timeId)
+          // 如果有定时器在跑，直接结束
+          if (this.timeId) {
+            return
+          }
+          // 开一个定时器， 每次都截取字符串的第一个字符串，放到最后一个字符
+          this.timeId = setInterval(() => {
+            // console.log(this.msg)
+            this.msg =  this.msg.slice(1) + this.msg.slice(0, 1)
+          }, 300)
+        },
+        stop() {
+          clearInterval(this.timeId)
+          // 把定时器的id清空
+          this.timeId = ''
+        }
+      }
+    })
+  </script>
+</body>
+</html>

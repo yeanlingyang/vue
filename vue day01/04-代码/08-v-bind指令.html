@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1. v-bind指令的作用
+      v-bind指令： 用于访问data中的数据，在标签的属性中使用
+    2. v-bind如何使用
+      title="title"  v-bind:属性名="属性的值"
+
+      v-bind使用的场景非常非常多。v-bind能够简写
+      v-bind:title 简写为  :title
+      v-bind:src 简写  :src
+    3. v-bind需要注意东西
+      v-bind访问的值必须在data中存在的
+   -->
+   <div id="app">
+     <img v-bind:src="imgUrl" v-bind:title="msg" alt="alt">
+     <img :src="imgUrl" :title="msg" alt="">
+   </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        imgUrl: '1.gif'
+      }
+    })
+  </script>
+</body>
+</html>

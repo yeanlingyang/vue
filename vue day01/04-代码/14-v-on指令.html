@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1. v-on的作用
+      用来给元素注册点击事件的
+    2. v-on的语法
+      v-on:事件名 = "事件函数"
+      v-bind:title  简写 :title
+      v-on:click  可以简写成 @click
+      v-on:mouseenter 可以简写成 @mouseenter
+    3. v-on的注意点
+      注册事件需要一个事件的函数
+      创建vue实例的时候 ，data是用来给vue实例提供的属性（数据）,不应该提供方法
+
+   -->
+   <div id="app">
+     <h1>{{msg}}</h1>
+     <button v-on:click="clickFn" v-on:mouseenter="fn">点我!</button>
+     <button @click="clickFn" @mouseenter="fn">点我!</button>
+   </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      // 指定视图
+      el: '#app',
+      // 指定数据（属性）
+      data: {
+        msg: 'hello'
+      },
+      // methods 指定vue中需要使用到的方法
+      methods: {
+        clickFn() {
+          alert('嘻嘻')
+        },
+        fn() {
+          console.log('哇哇')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+   <div id="app">
+     <button @click="fn">按钮</button>
+     {{msg}}
+   </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello'
+      },
+      methods: {
+        fn() {
+          console.log(1111)
+          console.log(this.msg)
+        }
+      }
+    })
+
+    // const obj = {
+    //   name: 'zs',
+    //   age: 18,
+    //   say() {
+    //     console.log(this.name + this.age)
+    //   }
+    // }
+    // obj.say()
+
+    // div.onclick = function() {
+    //   console.log(this)
+    // }
+
+
+    // 定时器
+    // 数组中一堆的方法  forEach map filter 
+  </script>
+</body>
+</html>

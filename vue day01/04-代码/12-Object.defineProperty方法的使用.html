@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const pp = {
+      name: '鹏鹏',
+      yanzhi: 2
+    }
+
+    // 需求： 在获取pp的yanzhi或者设置yanzhi的时候，我们需要知道
+    // 数据劫持
+    // 作用： 给对象的某个属性增加修饰
+    // 参数1： 对象名
+    // 参数2：属性名
+    // 参数3： 修饰，是一个对象
+    let temp = pp.yanzhi
+    Object.defineProperty(pp, 'yanzhi', {
+      // get方法会在获取yanzhi这个属性的时候执行
+      // get方法会劫持 yanzhi这个属性的获取操作
+      get:function() {
+        console.log('别看了，颜值低得很')
+        return temp
+      },
+      // set方法会劫持到yanzhi这个属性的设置操作
+      set:function(value){
+        temp = value
+        console.log('还想改？臭不要脸')
+        // 修改temp的值
+      }
+    })
+  </script>
+</body>
+</html>

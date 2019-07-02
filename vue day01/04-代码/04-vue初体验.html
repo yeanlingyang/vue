@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1. 安装  下载vue
+    2. 引入一个vue文件
+    3. 使用vue
+   -->
+  <div id="app" class="demo">
+    <h1>{{ msg }}</h1>
+    <p> {{msg}} </p>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    // 引入了vue.js文件，vue.js文件会暴漏一个全局的Vue构造函数
+    // 3.1 初始化一个vue实例， 需要指定 视图  数据
+    // 使用vue的时候，我们需要关注两个东西
+    // el:  
+    const vm = new Vue({
+      // element: 缩写  指定vue管理的视图， 某个盒子的选择器
+      el: '#app',
+      // data 指定vue中使用的数据
+      data: {
+        msg: 'hello vue'
+      }
+    })
+  </script>
+</body>
+</html>

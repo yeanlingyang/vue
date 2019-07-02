@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <h1>{{msg}}</h1>
+      <p>{{ name }}</p>
+    </div>
+    <div>
+      {{msg}}
+    </div>
+  </div>
+  <!-- 引入vue.js -->
+  <!-- 
+    1. new vue()  Vue是一个构造函数首字母大写
+    2. el不能指定为body或者html, 应该是一个div
+    3. 如果想要修改页面中的内容，应该怎么办,  data中所有的数据都添加给了vm对象
+      可以通过vm.xxx 进行修改
+   -->
+  <script src="vue.js"></script>
+  <script>
+    // 创建vue实例
+    const vm = new Vue({
+      // 指定el和data
+      el: '#app',
+      data: {
+        msg: '呵呵',
+        name: 'zs'
+      }
+    })
+  </script>
+</body>
+</html>

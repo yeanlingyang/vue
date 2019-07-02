@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    v-model
+      v-model的作用是什么
+        1. 给表单元素使用
+        2. 创建双向数据绑定
+        双向数据绑定：
+          当数据变了-----=> 视图会跟着变
+          视图变了 =======> 数据跟着变
+      v-model的语法是什么
+        v-model="值"
+      v-model的注意事项
+        1 只能表单元素使用
+        2. 必须在data中存在
+   -->
+   <div id="app">
+     <p>{{msg}}</p>
+     <input type="text" v-model="msg">
+
+     <input type="text" v-model="username">
+     <input type="text" v-model="password">
+     <button>登录</button>
+   </div>
+  <script src="vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello',
+        username: '',
+        password: ''
+      }
+    })
+  </script>
+</body>
+</html>

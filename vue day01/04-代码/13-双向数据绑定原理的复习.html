@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <script>
+    const data = {
+      msg: '哈哈'
+    }
+
+    const input = document.querySelector('input')
+    input.value = data.msg
+
+    // 双向绑定  表单的数据发生了改变（view） ------> 数据跟着变
+    // 核心原理：监听文本框的事件
+    input.addEventListener('input', function() {
+      data.msg = input.value
+    })
+
+    // 双向绑定： 数据发生了改变 ======》 view跟着变
+    // 核心原理： 知道数据发生了改变，，，劫持这个数据
+    let temp = data.msg
+    Object.defineProperty(data, 'msg', {
+      get(){
+        console.log('获取了值')
+        return temp
+      },
+      set(value) {
+        console.log('设置了值')
+         temp = value
+        // 应该让视图跟着改变
+        input.value  = temp
+      }
+    })
+  </script>
+</body>
+</html>
