@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      使用v-for的使用需要指定key属性
+      vue中就地更新策略    react(虚拟DOM与diff算法)
+
+
+      vue在数据发生改变的时候，会把需要更新的这一部分视图进行更新，不会更新所有的视图
+
+
+
+      1. 使用v-for的时候一定要加key值  如果不加，默认采用就地更新原则，正常情况没有问题。
+     -->
+    <div id="app">
+      <button @click="fn">修改</button>
+      <h1>
+        <span>哈哈哈</span>
+        <span>{{msg}}</span>
+        <span>嘻嘻嘻嘻</span>
+      </h1>
+      <ul>
+        <li v-for="item in list" :key="item">
+          <input type="checkbox">
+          {{item}}
+        </li>
+      </ul>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          list: ['吃饭', '睡觉', '打pp']
+        },
+        methods: {
+          fn() {
+            // this.msg = '嘻嘻'
+            this.list.unshift('敲代码')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

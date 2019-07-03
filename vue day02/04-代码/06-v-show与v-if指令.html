@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 
+        v-show: 用于控制元素显示或者隐藏
+          v-show="值"  如果这个值是true，表示显示 如果是false隐藏
+          v-show:通过样式  display属性控制显示和隐藏
+
+        v-if: 用于控制元素的显示和隐藏
+          v-if="值"    如果这个值是true，表示显示 如果是false隐藏
+          v-if通过删除或者创建一个元素来控制显示和隐藏的
+
+        以后用哪个？？？？？
+          如果一个盒子需要频繁的显示和隐藏，应该用 v-show
+          如果一个盒子要么显示要么隐藏  应该用  v-if
+
+
+        共同点：都能控制显示和隐藏
+        区别： v-show适合频繁切换   v-if适合要么显示要么隐藏
+       -->
+      <h1 v-show="isShow">v-show的盒子</h1>
+      <h1 v-if="isShow">v-if的盒子</h1>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          isShow: true
+        }
+      })
+    </script>
+  </body>
+</html>

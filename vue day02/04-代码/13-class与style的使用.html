@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+
+      .fz {
+        font-size: 40px;
+      }
+
+      .green {
+        background-color: green;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <!-- 
+      v-bind可以操作class属性和style属性的
+      默认情况下，class属性 style属性都是字符串
+      v-bind对于class属性和style属性增强了。允许class和style的值是对象  也可以是数组
+     -->
+    <div id="app">
+      <div :class="{fz: isFz, green: isGreen}">哈哈</div>
+      <div :class="obj"></div>
+
+      <!-- 操作style -->
+      <div :style="{width: width}"></div>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          isFz: false,
+          isGreen: true,
+          obj: {
+            fz: true,
+            green: true
+          },
+          width: '200px'
+        }
+      })
+    </script>
+  </body>
+</html>

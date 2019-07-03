@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      v-cloak用于解决 插值表达式闪烁问题的
+        当vue编译结束的时候，v-cloak指令会自动消失
+
+      v-cloak配合样式解决插值表达式闪烁的问题
+
+
+
+      v-cloak在真实开发没什么用
+      1. v-cloak配合样式解决插值表达式闪烁的问题
+      2. 为什么会闪烁，网速慢
+      3. 将来真实开发过程中，根本就不用script方式引入vue.js
+      4. 将来项目中vue.js都是跟着webpack一起打包了
+     -->
+    <div id="app">
+      <h1 v-cloak>{{ msg }}</h1>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        }
+      })
+
+
+      /* 
+        v-bind
+        v-model
+        v-on
+        v-text 
+        v-html
+        v-show
+        v-if
+        v-else
+        v-else-if
+        v-for  key
+        v-pre
+        v-once
+        v-cloak
+
+
+        v-slot
+      */
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      作用：
+        v-for用于遍历一个数组或者一个对象
+      语法
+        v-for是一个属性， v-for指令谁需要重复的渲染，就给谁加
+
+        遍历数组
+          v-for="item in 数组"  item表示每次遍历出来的值，，，item的名字是可以随意起
+          v-for="(item,index) in 数组" item表示值  index:下标
+
+        遍历对象
+          v-for="value in 对象"
+          v-for="(value, key) in 对象"
+     -->
+    <div id="app">
+      <h1>pp的爱好</h1>
+      <ul>
+        <li v-for="item in hobby">{{item}}</li>
+      </ul>
+
+      <ul>
+        <li v-for="(item,index) in hobby">{{index}}-----{{item}}</li>
+      </ul>
+
+      <ul>
+        <li v-for="index in hobby">{{index}}</li>
+      </ul>
+
+
+      <ul>
+        <li v-for="(v, k) in girlFriend">{{k}}------{{v}}</li>
+      </ul>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          hobby: ['c 唱歌', 't 跳', 'r rap', 'l 篮球', '打篮球的样子真帅'],
+          girlFriend: {
+            name: 'cui花',
+            age: 38,
+            height: 180,
+            weight: 180
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

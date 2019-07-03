@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      当按了回车键的时候，把msg打印出来
+      @事件名.事件修饰符或者按键修饰符
+
+      .prevent  .stop  .enter  .esc .tab
+
+      .enter
+      .esc
+      .tab
+     -->
+    <div id="app">
+      <input type="text" @keyup.hcc="fn" v-model="msg">
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      // 自定义按键
+      Vue.config.keyCodes.hcc = 13
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        methods: {
+          fn() {
+            console.log(this.msg)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

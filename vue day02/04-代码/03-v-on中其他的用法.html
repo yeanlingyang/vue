@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      v-on注册事件的时候，如果需要传递参数，该怎么办？
+        @click="事件函数"
+        @click="事件函数(参数)"
+
+        @事件名.事件修饰符 = "事件函数"
+          .prevent 阻止默认行为  a标签 表单的提交
+          .stop 阻止冒泡
+          .capture 捕获阶段执行
+          .self:只有点击自己才执行，点击子元素不执行
+          .once 只会执行一次
+      注册事件经常需要阻止冒泡  阻止浏览器默认行为
+     -->
+    <div id="app">
+      <button @click="fn(100, 'zs')">按钮</button>
+      <h1>{{ msg }}</h1>
+      <div @click.once="fn1">
+        <a @click.prevent="clickFn" href="http://www.baidu.com">点我跳转</a>
+      </div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        methods: {
+          fn(id, name) {
+            console.log(this.msg)
+            console.log(id, name)
+          },
+          clickFn() {
+            // console.log(e)
+            // e.preventDefault()
+            console.log('嘻嘻')
+          },
+          fn1() {
+            console.log('哈哈')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
