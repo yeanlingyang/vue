@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ car.brand }}-----{{car.price}}</h1>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+      // el data methods computed watch
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          car: {
+            brand: '玛莎拉蒂',
+            price: 3000000
+          }
+        },
+        // 监听属性在监听复杂类型的时候，监听的是car的地址是否发生改变
+        // 需求：我希望能够监听到car的变化（包括内部属性的变化）
+        // 需要使用监听的完整形态
+        watch: {
+          car: {
+            // 深度 监听(不仅会监听地址的变化，还会监听数据的变化)
+            deep: true,
+            // 立即监听， 页面一加载就会让handler执行一次
+            immediate: true,
+            // 数据变化时，执行的函数
+            handler: function(value) {
+              console.log('你变了', value)
+            }
+          }
+        }
+      })
+
+
+
+      /* 
+        监听简单类型
+          watch: {
+            msg(value) { value:改变后的值 },
+            car: {
+              deep: true,
+              handler(value) {
+
+              }
+            }
+          }
+      
+       */
+    </script>
+  </body>
+</html>

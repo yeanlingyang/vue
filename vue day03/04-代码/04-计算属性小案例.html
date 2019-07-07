@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="num1"> +
+      <input type="text" v-model="num2"> = 
+      <span>{{ total }}</span>
+      <p>{{ msg }}</p>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          num1: '',
+          num2: ''
+        },
+        // 计算属性中提供的属性不能和data中的属性名重复
+        computed: {
+          total() {
+            return +this.num1 + +this.num2
+          },
+          msg1() {
+            return '哈哈'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

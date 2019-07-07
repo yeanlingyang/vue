@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="msg">
+      <h1>{{ msg }}</h1>
+    </div>
+
+    <!-- 
+      vue的监听属性用于监听vue中数据的变化
+      watch
+     -->
+    <script src="vue.js"></script>
+    <script>
+      // el data methods computed watch
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: '哈哈'
+        },
+        watch: {
+          // 1. 只要msg的值发生了改变，function就会执行
+          // 2. 参数1：newValue 参数2：oldValue
+          // 监视属性完整形态
+          // 监视属性如果是复杂类型，比较麻烦
+          msg: function(value, oldValue) {
+            console.log('你变了', value, oldValue)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

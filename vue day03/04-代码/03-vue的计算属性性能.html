@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      计算属性： computed
+     -->
+    <div id="app">
+      <!-- 需求：需要显示msg的翻转后的一个结果 -->
+      <h1>{{ reverseMsg }}</h1>
+      <h1>{{ reverseMsg }}</h1>
+      <h1>{{ reverseMsg }}</h1>
+      <h1>{{ reverseMsg }}</h1>
+      <h1>{{ reverseMsg }}</h1>
+      <h1>{{ reverseMsg }}</h1>
+      <h1>{{ reverseMsg }}</h1>
+      <h1>{{ reverseMsg }}</h1>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      // 1. 缺点1：插值表达式中写了大量的逻辑判断，不好维护
+
+      // 1. 计算属性： 写在computed中
+      // 2. 计算属性和data一样，也是用来提供的属性，computed中提供的属性是需要一定的计算才能得到结果的属性。
+      // 3. 计算属性在写法上是一个函数,计算属性要有计算的逻辑，计算的逻辑写在函数中，计算属性的值对应的函数的返回值
+
+      // 优点1：计算属性可以把逻辑的操作放到vue中，而不是放到模板中，方便维护
+      // 优点2：计算属性的性能非常高，基于缓存实现， 计算属性一旦把结果计算出来，就会把结果存储起来，不管使用多少次，直接用
+      // 优点3：计算属性的值只会当它依赖的属性发生了改变，计算属性就会重新执行一次
+      const vm = new Vue({
+        // el: 指定视图
+        // data: 指定数据
+        // methods: 指定方法
+        // computed: 指定计算属性
+        el: '#app',
+        data: {
+          msg: '中国人',
+          name: 'zs'
+        },
+        computed: {
+          reverseMsg: function() {
+            console.log('我执行了')
+            return this.msg.split('').reverse().join('')
+          }
+        }
+      })
+
+      /* 
+        1. 计算属性写到computed属性中
+        2. 计算属性写法上是一个函数，计算属性实质上是一个属性，对应的函数的返回值。
+        3. 计算属性只会算一次，就会把结果存储起来，非常的高效
+        4. 计算属性只有当依赖的数据发生了改变，就会重新计算
+        5. 什么时候使用计算属性：需要在插值表达式或者指令中书写复杂的逻辑，都应该由计算属性来提供
+      */
+    </script>
+  </body>
+</html>
