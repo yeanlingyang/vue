@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+    </div>
+
+    <!-- 
+      生命周期：一个事件从出生到消亡的整 个阶段
+      vue的生命周期：一个vue实例从new Vue开始创建， 到最终这个vue实例被销毁的整个过程就是vue的生命周期
+
+      生命周期函数（钩子函数）：vue的生命周期是已经确定好了的。如果我们希望能够参与到vue的生命周期中，就需要用到vue的生命周期函数（钩子函数） vue会在特定的时机去调用特定的钩子函数。
+
+     -->
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+
+      // 设置el有两种方式：
+      // 方式1：提供el参数
+      // 方式2：调用vm.$mount()
+      const vm = new Vue({
+        // el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        // template: '<a href="#">{{msg}}</a>'
+      })
+      // 设置vm的视图为#app
+      vm.$mount('#app')
+    </script>
+  </body>
+</html>

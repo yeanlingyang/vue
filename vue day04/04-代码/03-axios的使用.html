@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="node_modules/axios/dist/axios.js"></script>
+  <script>
+    // 以前发送ajax方式
+    // 1. XMLHttpRequest  原生ajax
+    // 2. jquery封装了一个方法： $.ajax()  $.get()  $.post() 回调函数  回调地狱
+    // 3. axios发送ajax请求  axios也是对于XMLHttpRequest做了一个封装  基于promise  ES6语法
+      // async await
+
+    // axios和vue关系，，，没有半毛钱关系
+
+    // axios暴漏了一个全局变量，就是axios
+    // axios().then().catch()
+    // axios({
+    //   // method: 请求方式
+    //   // url: 请求地址
+    //   // data: 设置请求的数据（post请求和put请求等数据）
+    //   // params: 设置请求的参数（get请求和delete）
+    //   method: 'get',
+    //   url: 'http://localhost:3000/todos'
+    // }).then(function(res) {
+    //   // 处理成功的结果, res是axios给我们封装的一个对象，服务器返回的数据在res.data中
+    //   console.log(res.data)
+    // }).catch(function(err) {
+    //   console.log(err)
+    // })
+
+
+    // 新增一个任务
+    // axios({
+    //   method: 'post',
+    //   url: 'http://localhost:3000/todos',
+    //   data: {
+    //     name: '随便来一个',
+    //     flag: false
+    //   }
+    // }).then(function(res) {
+    //   console.log(res.data)
+    // })
+    axios({
+      method: 'delete',
+      url: 'http://localhost:3000/todos/5'
+    }).then(function(res) {
+      console.log(res.data)
+    })
+  </script>
+</body>
+</html>

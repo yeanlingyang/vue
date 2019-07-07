@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg | demo }}</h1>
+      <p>{{content | demo}}</p>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+      /* 
+        vue提供了过滤器的语法，过滤器经常用于格式化我们文本
+          时间进行格式化
+          数字格式化
+        
+        过滤器的基本使用
+          1. 定义过滤器
+          2. 使用过滤器
+            {{ 值 | 过滤器的名字}}
+      */
+
+      // 1. 定义vue的过滤器
+      // 参数1：过滤器名字
+      // 参数2：函数，处理过滤的逻辑  value就是我们需要处理的数据
+      // 返回值 就代表 处理后的结果
+      Vue.filter('demo', function(value) {
+        console.log('过滤器执行了')
+        console.log(value)
+        return value.toUpperCase()
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          content: 'hahah, my name is jim green'
+        }
+      })
+    </script>
+  </body>
+</html>

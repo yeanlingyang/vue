@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 日期 -->
+      <p>{{ date | time('YYYY-MM-DD') }}</p>
+      <!-- 时间 -->
+      <p>{{ date2 | time('HH:mm:ss') }}</p>
+      <!-- 年和月 -->
+      <p>{{ date3 | time('YYYY年MM月') }}</p>
+
+      <p>{{ date | time }}</p>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/moment/moment.js"></script>
+    <script>
+      
+      Vue.filter('demo', function(value) {
+        console.log('过滤器执行了')
+        console.log(value)
+        return value.toUpperCase()
+      })
+
+      Vue.filter('time', function(value, format = 'YYYY年MM月DD日 HH:mm:ss') {
+        // date  data
+        return moment(value).format(format)
+      })
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          date: 1561802280618,
+          date2: 1561802180618,
+          date3: new Date()
+        }
+      })
+    </script>
+  </body>
+</html>

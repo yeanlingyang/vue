@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+    </div>
+
+    <!-- 
+      vue的生命周期钩子函数有11个
+
+      需要掌握的8个钩子函数分为4组
+        beforeXXX   XXXed
+     -->
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+
+      const vm = new Vue({
+        // el data methods computed watch 8个钩子
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          list: []
+        },
+        beforeCreate() {
+          console.warn('beforeCreate', '会在vue实例数据初始化前面执行')
+          console.warn(this.msg)
+        },
+        created() {
+          console.warn('created', '会在vue实例数据初始化后面执行')
+          console.warn(this.msg)
+        },
+        beforeMount() {
+          console.warn('beforeMount', '在渲染的结构替换el之前')
+          console.warn(document.querySelector('#app').innerHTML)
+        },
+        mounted() {
+          console.warn('mounted', '在渲染的结构替换el之后')
+          console.warn(document.querySelector('#app').innerHTML)
+        },
+        beforeUpdate() {
+          console.warn('beforeUpdate', '数据发生了改变，DOM更新之前')
+          console.warn(document.querySelector('#app').innerHTML)
+        },
+        updated() {
+          console.warn('updated', '数据发生了改变，DOM更新之后')
+          console.warn(document.querySelector('#app').innerHTML)
+        },
+        beforeDestroy() {
+          console.warn('beforeDestroy', '销毁前执行')
+        },
+        destroyed() {
+          console.warn('destroyed', '销毁后执行')
+        }
+      })
+      // vm.$mount('#app')
+    </script>
+  </body>
+</html>

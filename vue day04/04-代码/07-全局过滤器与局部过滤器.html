@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg | demo }}</h1>
+    </div>
+
+    <div id="app2">
+      <h1>{{msg | demo }}</h1>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+      /* 
+        过滤器语法中，有全局的过滤器和局部的过滤器
+        全局过滤器：所有的vue实例中都能使用的过滤器
+        局部过滤器：只有在当前实例中能使用的过滤器
+      */
+
+      Vue.filter('global', function(value) {
+        return value + '11'
+      })
+
+      const vm = new Vue({
+        // el data methods computed watch 8个钩子
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        filters: {
+          // 配置的局部过滤器，局部过滤器只有当前vue实例能用
+          demo: function(value) {
+            return value + '22'
+          }
+        }
+      })
+      const vm2 = new Vue({
+        el: '#app2',
+        data: {
+          msg: 'app'
+        }
+      })
+    </script>
+  </body>
+</html>
