@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="fn">给car增加一个属性</button>
+      <h1>{{ msg }}</h1>
+      <h3>{{car.brand}} -----{{car.price}} -----{{car.color}}</h3>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      // 1. vue中如果需要使用到的数据，应该现在data中进行声明
+      // 2. 如果给data中的对象动态添加了一个属性，这个属性不是响应式的，这个值发生了更新，视图不会更新。
+      // 3. vue中提供了一个方法 Vue.set()  vm.$set() 用于给vue动态的添加一个响应式的属性
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          car: {
+            brand: '玛莎拉蒂',
+            price: 1000000
+          }
+        },
+        methods: {
+          fn() {
+            // 动态的给car增加一个属性
+            // this.car.color = 'green'
+            // 参数1： 需要添加属性的对象
+            // 参数2： 增加的属性名字
+            // 参数3： 值
+            this.$set(this.car, 'color', 'yellow')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

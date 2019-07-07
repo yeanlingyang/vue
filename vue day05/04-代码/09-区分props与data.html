@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #app {
+        width: 400px;
+        height: 400px;
+        background-color: yellowgreen;
+      }
+
+      .son {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+      <!-- 父组件给子组件传递一个复杂类型obj -->
+      <son class="son" :car="car" :money="money" :obj="obj" ></son>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+
+      // 1. 组件的数据可以是data中，也可以是props中
+      // 2. data是组件自己的数据 props是父组件传过来的数据
+      // 3. data中的数据允许修改，但是props中的数据不允许修改(props是只读的)
+      Vue.component('son', {
+        template: `
+          <div>
+            <button @click="fn">按钮</button>
+             <div>我是子组件</div>
+             <p>{{name}}-----{{gender}}</p>
+             <p>{{money}} ----{{car}}</p>
+             <p>{{obj.name}} ----{{obj.age}}</p>
+          </div>
+        `,
+        // data表示的是组件自己的私有数据
+        data() {
+          return {
+            gender: '男',
+            name: 'zs'
+          }
+        },
+        // props表示的父组件传递给子组件的数据
+        // 少在子组件修改父组件中的值，如果这个值是一个对象，你去修改对象的某个属性，这样做不会报错的。
+        // 缺点：将来出了bug不容易定位
+        props: ['car', 'money','obj'],
+        methods: {
+          fn() {
+            this.gender = '女'
+            // this.money = 10
+            // 引用类型： 
+            this.obj.name = 'ls'
+          }
+        }
+      })
+
+      // 根组件
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          money: 10000000,
+          car: '玛莎拉蒂',
+          obj: {
+            name: 'zs',
+            age: 18
+          }
+        }
+      })
+
+
+
+      
+    </script>
+  </body>
+</html>

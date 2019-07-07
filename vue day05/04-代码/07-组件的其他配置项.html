@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+
+      <hello></hello>
+      <hello></hello>
+      <hello></hello>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      Vue.component('hello', {
+        // 因为组件是可以复用的vue实例，所以，vue实例怎么配置，组件就怎么配置 el template
+        template: `
+          <div>
+            <button @click="fn">加10块</button>
+            <p>我有 {{money}} 块钱</p>
+          </div>
+        `,
+        methods: {
+          fn() {
+            console.log('哈哈哈')
+            this.money += 10
+          }
+        },
+        created() {
+          console.log('我是created钩子函数')
+        },
+        // 组件和vue实例不一样
+        // 1. vue实例有el参数
+        // 2. 组件要提供template参数
+        // 3. 组件中的data必须是一个函数，函数内部需要返回一个对象。
+        data: function() {
+          // 返回的对象在每个组件中都是独立的
+          return {
+            money: 100
+          }
+        }
+      })
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        }
+      })
+    </script>
+  </body>
+</html>

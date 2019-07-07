@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+
+      <!-- <hello></hello>
+
+      <hello></hello> -->
+      <demo></demo>
+      <demo></demo>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      /* 
+        1. 定义组件
+          // component: 组件
+          Vue.component()
+        2. 使用组件
+          把组件当成html标签来使用
+      */
+
+      // 组件是一个可以复用的vue实例
+      // 参数1：组件名
+      // 参数2：组件的配置项, 可以配置和vue实例相同的配置 methods computed watch template
+
+      // 组件中不会指定el，，但是一定会指定template，模版
+
+      // 注意点1. 定义的组件名不能是html原先就存在的标签。
+      // 注意点2：组件的模版只能有一个根元素
+      Vue.component('demo', {
+        template: `<div>
+          <div>你好啊，我是一个组件</div>
+          <button>按钮</button>
+        </div>`
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+
+      <hello></hello>
+      <demo></demo>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+
+      // 全局组件：将来在所有的vue实例中都可以使用
+      // 局部组件：只有在当前实例中可以使用
+      // Vue.filter  filters
+      Vue.component('hello', {
+        template: `
+          <div>这是全局组件</div>
+        `
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        // 提供局部组件
+        components: {
+          demo: {
+            template: `<div>这是一个局部组件</div>`
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

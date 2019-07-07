@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #app {
+        width: 400px;
+        height: 400px;
+        background-color: yellowgreen;
+      }
+
+      .son {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>我是父组件----{{car}}-----{{money}}</div>
+
+      <!-- 2. 父组件给子组件注册了一个自定义的事件（不要和常见的事件冲突） -->
+      <son class="son" @sb="fn"></son>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+
+
+      // 子传父的逻辑
+      // 1. 子组件需要触发一个自定义的事件（因为触发事件的时候是可以传递参数）
+      // 2. 父组件给子组件注册一个自定义事件
+
+      // 父组件中能够获取子组件中的数据
+      Vue.component('son', {
+        template: `
+          <div>
+            我是子组件
+            {{car}} ---- {{money}}
+
+            <button @click="fn">给老父亲传值</button>
+          </div>
+        `,
+        data() {
+          return {
+            car: '奥迪Q7',
+            money: 10000
+          }
+        },
+        methods: {
+          fn() {
+            console.log('做什么？？？？？？')
+
+            // 触发当前组件身上的一个事件
+            // 参数1：触发的事件的名字
+            // 参数2： 传递的参数
+            this.$emit('sb', this.car, this.money)
+          }
+        }
+      })
+
+      // 根组件中没有数据
+      const vm = new Vue({
+        el: '#app',
+        // 3. 父组件中提供一个方法， 注册事件使用用到的方法
+        data: {
+          car: '',
+          money: ''
+        },
+        methods: {
+          fn(car, money) {
+            console.log('哈哈')
+            console.log(car, money)
+            this.car = car
+            this.money = money
+          }
+        }
+      })
+     
+      /* 
+        子组件给父组件传值
+          1. 子组件去触发一个自定义的事件   this.$emit('事件名', 参数)
+          2. 需要父组件给子组件注册一个自定义事件   <son @事件名="函数"></son> 
+          3. 父组件需要提供一个函数，，，父组件可以通过函数的参数就能够获取到子组件的数据
+      */
+      
+    </script>
+  </body>
+</html>

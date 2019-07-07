@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="fn">按钮</button>
+      <h1>{{ msg }}</h1>
+      <div class="box">
+        <ul>
+          <li v-for="item in list">{{item}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      /* 
+        1. vue会在数据发生改变的时候，视图会自动跟着改变（DOM会自动更新的），这个步骤是异步的
+        2. 我们在修改完数据后不能立马的就获取更新后的DOM结构
+        3. 等到DOM更新了，才能去操作DOM， 使用Vue.nextTick()方法 或者 vm.$nextTick()中
+      */
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          list: []
+        },
+        methods: {
+          fn() {
+            // 修改数据前，打印结构
+            // console.log(document.querySelector('h1').innerHTML)
+            // this.msg = '哈哈'
+            // this.msg = '哈哈1'
+            // this.msg = '哈哈2'
+            // this.msg = '哈哈3'
+            // console.log(document.querySelector('h1').innerHTML)
+
+            this.list = ['吃饭', '睡觉', '打豆豆']
+            // console.log(document.querySelector('ul').innerHTML)
+            // 希望在DOM发生更新之后才初始化
+            // new IScroll('.box');
+            // setTimeout(function() {
+            // }, 1000)
+
+            // 这个方法会在DOM更新完成的第一时间去执行
+            this.$nextTick(function() {
+              console.log(document.querySelector('ul').innerHTML)
+            })
+            // Vue.nextTick(() => {
+            //   console.log(document.querySelector('ul').innerHTML)
+            //   new IScroll('.box');
+            // })
+
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

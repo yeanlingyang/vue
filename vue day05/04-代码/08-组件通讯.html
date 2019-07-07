@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #app {
+        width: 400px;
+        height: 400px;
+        background-color: yellowgreen;
+      }
+
+      .son {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+      <!-- son组件在根组件中渲染了， son组件和根组件就形成了父子关系 -->
+      <son class="son" :car="car" :money="money"></son>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      /* 
+        每个组件都有自己的数据，提供在data中，data还是函数，保证每个组件的数据是独立的。
+
+        组件的通讯：
+          父传子
+          子传父
+          非父子
+      */
+      // 子组件
+      // 需求：就想在子组件中使用根组件的msg
+
+
+      // 父组件传 子组件
+      // 1. 子组件通过一个属性: props属性 接收父组件传递过来的数据
+      // 2. 父组件给子组件传递数据   给子组件添加属性即可
+      Vue.component('son', {
+        template: `
+          <div>
+             <div>我是子组件</div>
+             <p>{{car}}-----{{ money }}</p>
+          </div>
+        `,
+        // props用于接收父组件传递过来的数据
+        // props和data一样，都可以给组件提供数据
+        // data是组件自己的私有数据  props是父组件传递过来的数据
+        props: ['money', 'car']
+      })
+
+      // 根组件
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          money: 10000000,
+          car: '玛莎拉蒂'
+        }
+      })
+
+
+
+      /* 
+        父传子
+          1. 子组件通过一个属性： props属性   可以接受父组件传递过来的数据  props:['money', 'car']
+          2. 父组件需要给子组件传值  只需要给子组件身上增加自定义的属性  <son money="100" :car="car"></son>
+      */
+    </script>
+  </body>
+</html>
