@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .jack,
+      .rose {
+        width: 300px;
+        height: 300px;
+        background-color: pink;
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <jack></jack>
+      <rose></rose>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      /* 
+        jack把数据msg传递给rose组件
+
+        非父子组件：
+          1. 创建一个bus （event bus: 事件总线）  所有组件都能访问
+          2. jack去触发 bus的一个自定义事件，可以传递参数
+          3. rose给bus去注册一个自定义的事件，提供一个函数，这个函数可以通过参数获取到值
+      */
+
+      // bus: 事件总线， 实质上就是一个空的vue实例
+      // 1. 创建了一个bus
+      const bus = new Vue()
+
+      Vue.component('jack', {
+        template: `
+          <div class="jack">
+            我是jack组件
+            <button @click="say">jack对rose说</button>
+            {{reply}}
+          </div>
+        `,
+        data() {
+          return {
+            msg: 'you jump, i look',
+            reply: ''
+          }
+        },
+        methods: {
+          say() {
+            // 2. 触发bus的事件, 传参数
+            bus.$emit('sb', this.msg)
+          }
+        },
+        created() {
+          bus.$on('reply', reply => {
+            console.log(reply)
+            this.reply = reply
+          })
+        }
+      })
+
+      Vue.component('rose', {
+        template: `
+          <div class="rose">
+            我是rose组件
+            ---{{msg}}
+            <button @click="say">rose回答说</button>
+          </div>
+        `,
+        data() {
+          return {
+            msg: '',
+            reply: 'gun'
+          }
+        },
+        // 3. rose给bus注册事件（这个注册事件的时机越早越好）
+        created() {
+          bus.$on('sb', msg => {
+            this.msg = msg
+          })
+        },
+        methods: {
+          say() {
+            bus.$emit('reply', this.reply)
+          }
+        }
+      })
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        }
+      })
+    </script>
+  </body>
+</html>

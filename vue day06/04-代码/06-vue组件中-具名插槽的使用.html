@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .modal {
+        width: 300px;
+        background-color: pink;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .modal h3,
+      .modal h1 {
+        margin: 0;
+      }
+
+      .content {
+        text-align: center;
+      }
+
+      .footer {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <modal>
+        <template v-slot:content>
+          <p>你确定要删除吗?</p>
+        </template>
+        <template v-slot:header>
+          <h3>温馨提示</h3>
+        </template>
+      </modal>
+      <modal>
+        <template v-slot:header>
+          <h1>警告</h1>
+        </template>
+        <template v-slot:content>
+          <form>
+            <input type="text" placeholder="输入用户名" />
+          </form>
+        </template>
+      </modal>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      /* 
+        插槽：内容分发，会把组件中的内容分发到slot中
+        1. 默认插槽，匿名插槽：<slot></slot>  在组件占位置
+        2. 具名插槽, 给插槽提供一个名字 <slot name="名字"></slot> 
+          如果是具名插槽， 给具名插槽传内容，内容需要包裹在一个template标签中
+        3. 作用域插槽： 带有数据的插槽   <slot name="title" money="100" car="小黄车"></slot>
+      */
+      Vue.component('modal', {
+        template: `
+          <div class="modal">
+            <div class="header">
+              <slot name="header"></slot>
+            </div>
+            <div class="content">
+              <slot name="content"></slot>
+            </div>
+            <div class="footer">
+              <button>确定</button>
+              <button>取消</button>
+            </div>
+          </div>
+        `
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        }
+      })
+    </script>
+  </body>
+</html>

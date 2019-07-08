@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <my-table :list="list">
+        <template v-slot:delete="scope">
+          <button @click="del(scope.item.id)">删除</button>
+        </template>
+      </my-table>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      Vue.component('my-table', {
+        template: `
+          <table>
+            <tr v-for="item in list" :key="item.id">
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.gender }}</td>
+              <td>{{ item.score }}</td>
+              <td>
+                <slot name="delete" :item="item"></slot>
+              </td>
+            </tr>
+          </table>
+        `,
+        props: ['list']
+      })
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          list: [
+            { id: 1, name: '张三', gender: '男', score: 100 },
+            { id: 2, name: '韩梅梅', gender: '男', score: 100 },
+            { id: 3, name: '马神么梅', gender: '女', score: 100 },
+            { id: 4, name: '什么冬梅', gender: '女', score: 100 }
+          ]
+        },
+        methods: {
+          del(id) {
+            this.list = this.list.filter(item => item.id !== id)
+          }
+        }
+      })
+
+      /* 
+        匿名插槽（默认插槽） 
+          <slot></slot>
+          <modal>哈哈哈啊</modal>     
+
+        具名插槽
+          <slot name="title"></slot>    
+          <template v-slot:title></template>     
+
+        作用域插槽(更多了解这种语法，后期项目中会用到)
+          <slot name="title" money="100" car="小黄车"></slot> 
+   
+          <template v-slot:title="scope">
+            {{ scope.money }}
+            {{ scope.car }}
+          </template>
+      */
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+    </div>
+    <!-- 
+      1. 下载vue-router yarn add vue-router
+      2. 引入vue-router   一定要在vue.js后面  vue-router 是vue的插件
+      3. 需要创建一个路由对象（路由对象就是用来管理路由）
+      4. 关联vue实例和路由对象 
+     -->
+
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script>
+      // 引入了vue-router.js，全局暴漏了VueRouter
+      const router = new VueRouter()
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        // 指定路由对象
+        router
+      })
+
+      /* 
+        1. 下载vue-router
+        2. 引入
+        3. 创建路由对象  const router = new VueRouter()
+        4. 关联 router: router
+      */
+    </script>
+  </body>
+</html>

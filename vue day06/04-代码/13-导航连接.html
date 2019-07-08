@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+      <ul>
+        <!-- 
+            vue-router中提供了一个标签  router-link
+            router-link:最终会渲染成a标签
+           -->
+        <li>
+          <router-link to="/index">首页</router-link>
+        </li>
+        <li>
+          <router-link to="/user">用户管理</router-link>
+        </li>
+        <li>
+          <router-link to="/login">登录</router-link>
+        </li>
+      </ul>
+
+      <hr />
+      <router-view></router-view>
+    </div>
+
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script>
+      const Index = {
+        template: `
+          <div>我是首页组件</div>
+        `
+      }
+
+      const User = {
+        template: `
+          <div>这是用户管理组件</div>
+        `
+      }
+
+      const Login = {
+        template: `
+          <div>这是登录组件</div>
+        `
+      }
+      const router = new VueRouter({
+        routes: [
+          // redirect: 路由的重定向
+          { path: '/', redirect: '/index' },
+          { path: '/index', component: Index },
+          { path: '/user', component: User },
+          { path: '/login', component: Login }
+        ]
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        router
+      })
+
+      /* 
+        1. 导航连接  router-link  会生成一个a连接，方便用户切换路由  to属性，渲染成a标签href属性
+        2. 路由重定向  {path: '/', redirect: '/index'}
+      */
+    </script>
+  </body>
+</html>

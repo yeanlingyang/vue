@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .light {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 100px;
+      margin: 0 auto;
+      color: #fff;
+      background-color: rgb(17, 4, 4);
+    }
+
+    /* 灯座 */
+    .bottom {
+      width: 150px;
+      height: 50px;
+      margin-top: 10px;
+      line-height: 50px;
+      text-align: center;
+      color: #fff;
+      background-color: #000;
+    }
+
+    .container {
+      width: 150px;
+    }
+
+    .active {
+      background-color: #ff0;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="container">
+    <div class="light active">我是一盏灯</div>
+    <div class="bottom">
+      <button>开灯</button>
+      <button>关灯</button>
+    </div>
+  </div>
+
+  <script src="vue.js"></script>
+</body>
+
+</html>

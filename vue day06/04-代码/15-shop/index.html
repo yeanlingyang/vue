@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>乐淘商城</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="./lib/fa/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./lib/mui/css/mui.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div class="lt_container">
+      <div class="lt_header">
+        <a href="index.html" class="icon_left"><i class="fa fa-home"></i></a>
+        <h3>乐淘云购</h3>
+        <a href="search.html" class="icon_right"
+          ><i class="fa fa-search"></i
+        ></a>
+      </div>
+      <div class="lt_main">
+        <!-- 匹配到的组件的显示位置，路由出口 -->
+        <router-view></router-view>
+      </div>
+      <div class="lt_footer">
+        <ul>
+          <li>
+            <router-link to="/index">
+              <i class="fa fa-home"></i>
+              <p>首页</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/category">
+              <i class="fa fa-bars"></i>
+              <p>分类页</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/cart">
+              <i class="fa fa-shopping-cart"></i>
+              <p>购物车</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/user">
+              <i class="fa fa-user"></i>
+              <p>用户中心</p>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+    <script>
+      const First = {
+        template: `
+          <div>我是一级分类组件</div>
+        `
+      }
+      const Second = {
+        template: `
+          <div>我是二级分类组件</div>
+        `
+      }
+
+      const Login = {
+        template: `
+          <div>我是登录组件</div>
+        `
+      }
+
+      const Register = {
+        template: `
+          <div>我是注册组件</div>
+        `
+      }
+
+      const Index = {
+        template: `
+          <div>我是首页组件</div>
+        `
+      }
+      const Category = {
+        template: `
+          <div>
+            我是分类组件
+            <router-link to="/category/first">一级分类</router-link>
+            <router-link to="/category/second">二级分类</router-link>
+            <hr>
+            <router-view></router-view>
+          </div>
+        `
+      }
+      const Cart = {
+        template: `
+          <div>我是购物车组件</div>
+        `
+      }
+      const User = {
+        template: `
+          <div>
+            我是用户组件
+            <router-link to="/user/login">登录</router-link>
+            <router-link to="/user/register">注册</router-link>
+
+
+            <hr>
+            <router-view></router-view>
+          </div> 
+        `
+      }
+
+      const router = new VueRouter({
+        routes: [
+          { path: '/', redirect: '/index' },
+          { path: '/index', component: Index },
+          {
+            path: '/category',
+            component: Category,
+            // 配置了某个路由的子路由
+            children: [
+              // /category/first
+              { path: 'first', component: First },
+              // /category/second
+              { path: 'second', component: Second }
+            ]
+          },
+          { path: '/cart', component: Cart },
+          {
+            path: '/user',
+            component: User,
+            children: [
+              { path: 'login', component: Login },
+              { path: 'register', component: Register }
+            ]
+          }
+        ],
+        linkActiveClass: 'current',
+        linkExactActiveClass: 'current'
+      })
+
+      const vm = new Vue({
+        el: '.lt_container',
+        router
+      })
+    </script>
+  </body>
+</html>

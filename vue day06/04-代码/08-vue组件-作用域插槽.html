@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <demo>
+        <template v-slot:title="scope">
+          <button>按钮</button>
+          <p>哈哈哈</p>
+          {{ scope.id }} -----{{ scope.car }}
+        </template>
+      </demo>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      Vue.component('demo', {
+        template: `
+          <div>
+            <p>我是一个demo组件</p>
+            <slot name="title" id="1" car="小黄车"></slot>
+          </div>
+        `
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        }
+      })
+    </script>
+  </body>
+</html>

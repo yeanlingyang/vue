@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #app {
+        width: 400px;
+        height: 400px;
+        background-color: pink;
+      }
+
+      .son {
+        width: 200px;
+        height: 200px;
+        background-color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      父传子
+        1. 子组件使用props来接收父组件传递过来的数据
+        2. 父组件提供子组件需要的数据
+
+      子传父
+        1. 子组件去触发一个自己的自定义事件，传递参数
+        2. 父组件就需要给子组件去注册一个自定义事件
+        3. 父组件需要传递一个函数，函数通过参数就可以接收到参数
+
+     -->
+    <div id="app">
+      <div>这是父组件</div>
+      <div>{{ house }} ---- {{ money }}</div>
+      <son class="son" :house="house" :money="money" @sb="changeHouse"></son>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      // 单向数据流：父组件的数据发生了修改，会自动流动子组件， 不允许子组件直接修改父组件的数据。
+      // 谁的数据谁自己改
+      Vue.component('son', {
+        template: `
+          <div>
+            <button @click="changeHouse">换房子</button>
+            <div>我是一个子组件</div>
+            <div>{{house}} ---- {{money}}</div>
+          </div>
+        `,
+        props: ['house', 'money'],
+        methods: {
+          changeHouse() {
+            // this.house = '土坯房'
+            // 触发了自己的事件
+            this.$emit('sb', '土坯房')
+          }
+        }
+      })
+
+      // 根组件
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          house: '大别墅',
+          money: 200
+        },
+        methods: {
+          // 父组件中声明了一个函数
+          changeHouse(h) {
+            this.house = h
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
