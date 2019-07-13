@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-color:font.bold="color" v-bind:title="msg">哈哈哈</div>
+      <div v-color:bg.italic="color" v-mybind:title="msg">呵呵呵</div>
+      <div v-color:font.italic.bold="color" v-mybind:title="msg">呵呵呵</div>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      /* 
+       v-color:font="color" 设置元素的字体颜色
+       v-color:bg="color"   设置元素的背景颜色
+
+       v-color:bg.italic="color"  要把元素的字体改成倾斜
+       v-color:bg.bold="color"  要把元素的字体改成加粗
+      */
+
+      Vue.directive('color', {
+        bind(el, binding) {
+          console.log(binding)
+          if (binding.arg === 'font') {
+            el.style.color = binding.value
+          }
+          if (binding.arg === 'bg') {
+            el.style.backgroundColor = binding.value
+          }
+
+          if (binding.modifiers.italic) {
+            // 需要倾斜
+            el.style.fontStyle = 'italic'
+          }
+          if (binding.modifiers.bold) {
+            el.style.fontWeight = 700
+          }
+        },
+        update(el, binding) {
+          if (binding.arg === 'font') {
+            el.style.color = binding.value
+          }
+          if (binding.arg === 'bg') {
+            el.style.backgroundColor = binding.value
+          }
+        }
+      })
+
+      Vue.directive('mybind', {
+        bind(el, binding) {
+          // v-bind指令主要设置元素的属性的
+          // console.log(binding.arg, binding.value)
+          el.setAttribute(binding.arg, binding.value)
+        },
+        update(el, binding) {
+          el.setAttribute(binding.arg, binding.value)
+        }
+      })
+      // 实现mybind指令
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          color: 'red'
+        }
+      })
+    </script>
+  </body>
+</html>

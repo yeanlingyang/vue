@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .router-link-exact-active,
+      .router-link-active {
+        font-size: 30px;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+      <ul>
+        <li><router-link to="/index">首页</router-link></li>
+        <li><router-link to="/user">用户</router-link></li>
+        <li><router-link to="/login">登录</router-link></li>
+      </ul>
+      <hr />
+      <router-view></router-view>
+    </div>
+
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script>
+      const Index = {
+        template: `
+          <div>我是首页</div>
+        `
+      }
+      const User = {
+        template: `
+          <div>
+            我是用户管理
+            <router-link to="/user/add">用户添加</router-link>
+            <router-link to="/user/delete">用户删除</router-link>
+            <hr>
+            <router-view />
+          </div>
+        `
+      }
+      const UserAdd = {
+        template: `
+          <div>我是用户添加管理</div>
+        `
+      }
+      const UserDelete = {
+        template: `
+          <div>我是用户删除管理</div>
+        `
+      }
+
+      /* 
+        声明式导航： router-link  a标签
+        编程式导航： this.$router.push('/index')  location.href
+      */
+      const Login = {
+        template: `
+          <div>
+            我是登录
+            <router-link to="/index">登录</router-link>
+            <button @click="login">登录</button>
+          </div>
+        `,
+        methods: {
+          login() {
+            // 判断用户民和密码是否正确
+            // 类似于 location.href
+            this.$router.push('/index')
+          }
+        }
+      }
+
+      const router = new VueRouter({
+        // 路由规则
+        routes: [
+          { path: '/', redirect: '/index' },
+          { path: '/index', component: Index },
+          {
+            path: '/user',
+            component: User,
+            children: [
+              { path: 'add', component: UserAdd },
+              { path: 'delete', component: UserDelete }
+            ]
+          },
+          { path: '/login', component: Login }
+        ]
+      })
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        router
+      })
+    </script>
+  </body>
+</html>

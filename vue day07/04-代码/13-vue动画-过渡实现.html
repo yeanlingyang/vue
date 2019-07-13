@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .fade-enter,
+      .fade-leave-to {
+        opacity: 0;
+      }
+      .fade-enter-to,
+      .fade-leave {
+        opacity: 1;
+      }
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 1s;
+      }
+
+      /* .v-leave {
+        opacity: 1;
+      }
+      .v-leave-to {
+        opacity: 0;
+      }
+
+      .v-leave-active {
+        transition: all 1s;
+      } */
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="isShow = !isShow">切换</button>
+      <!-- 
+        1. vue中提供了一个标签，这个标签transition， 只需要把需要执行动画的元素包裹到transition中即可
+        2. 配合6个类名来实现这个效果
+
+        如果transition没有指定name属性， 6个类名默认都是v-开头的
+        如果transtion指定了name属性name="fade"  6个类名字都是fade-
+       -->
+      <transition name="fade">
+        <h1 v-show="isShow">{{ msg }}</h1>
+      </transition>
+
+      <transition name="slide">
+        <div v-show="isShow">{{ msg }}</div>
+      </transition>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          isShow: true
+        }
+        // methods: {
+        //   fn() {
+        //     this.isShow = !this.isShow
+        //   }
+        // }
+      })
+    </script>
+  </body>
+</html>

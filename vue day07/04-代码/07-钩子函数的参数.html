@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-demo:aa.bb.cc="msg">{{ msg }}</h1>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      Vue.directive('demo', {
+        // vue中一个完整的指令
+        // v-on:click.stop.prevent = "clickFn"
+        // v-指令名:指令的参数.指令的修饰符.指令的修饰符 = '指令的值'
+        // 所有的钩子函数的参数都是一个样
+        // 参数1： el  el表示指令所在的DOM元素
+        // 参数2： binding ： 是一个对象，有很多属性，包含了指令中所有的信息
+        // name: 指令的名字
+        // value: 指令的值
+        // arg: 指令的参数  :参数
+        // modifiers: 指令的修饰符，可以有多个
+        bind(el, binding) {
+          console.log('el', el)
+          console.log('binding', binding)
+        }
+      })
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        }
+      })
+    </script>
+  </body>
+</html>

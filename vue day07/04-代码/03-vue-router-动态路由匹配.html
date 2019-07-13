@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+      <ul>
+        <li><router-link to="/product/1">商品1</router-link></li>
+        <li><router-link to="/product/2">商品2</router-link></li>
+        <li><router-link to="/product/3">商品3</router-link></li>
+        <li><router-link to="/product/10086">商品10086</router-link></li>
+      </ul>
+      <hr />
+      <router-view></router-view>
+    </div>
+
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script>
+      const Product = {
+        template: `
+          <div>我是一个product组件-----这是id为{{$route.params.id}}商品的信息</div>
+        `,
+        created() {
+          // 想要获取动态路由的参数
+          // $router指的是整个项目中路由对象，一个项目就一个，这哥们不会变化， push方法可以实现路由的跳转
+          console.log(this.$router)
+          // $route指的是当前的路由规则
+          console.log(this.$route)
+        }
+      }
+
+      const router = new VueRouter({
+        // /product/:id 匹配  /product/1  /product/2  /product/xxx
+        //   不匹配：  /product    /product/1/2
+        // 1. 如何设置动画路由匹配
+        routes: [{ path: '/product/:id', component: Product }]
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        router
+      })
+    </script>
+  </body>
+</html>

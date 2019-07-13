@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="animate.css" />
+    <style>
+      body {
+        overflow: hidden;
+      }
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="isShow = !isShow">切换</button>
+      <!-- 
+        transition会在特定的时机生成6个类
+        fade-enter
+        fade-enter-to
+        fade-enter-active 使用动画
+
+        enter-active-class:用于自定义进入并且active时的类名  默认 fade-enter-active
+        
+      -->
+      <transition
+        name="fade"
+        enter-active-class="animated bounceInLeft"
+        leave-active-class="animated bounceOutRight"
+      >
+        <h1 v-show="isShow">{{ msg }}</h1>
+      </transition>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          isShow: true
+        }
+      })
+    </script>
+  </body>
+</html>

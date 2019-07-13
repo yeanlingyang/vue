@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" v-focus="msg" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      // 5个钩子函数
+
+      Vue.directive('focus', {
+        // bind钩子函数只会执行一次，会在指令绑定到元素上的时候执行， 此时 元素不一定在页面中显示了
+        bind() {
+          console.log('bind')
+        },
+        // inserted钩子函数，所在的元素插入到页面中（此时元素可以在页面中显示）
+        inserted() {
+          console.log('inserted')
+        },
+        // 当指令的值发生了改变的时候触发
+        update() {
+          console.log('update')
+        },
+        componentUpdated() {
+          // 当前组所有的DOM都更新完成时候触发
+          console.log('componentUpdated')
+        },
+        unbind() {
+          // 当指令从DOM元素上移除的时候触发
+          console.log('unbind')
+        }
+      })
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        directives: {
+          focus1: {
+            inserted(el) {
+              el.focus()
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

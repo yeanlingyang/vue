@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Template • TodoMVC</title>
+		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+		<!-- CSS overrides - remove if you don't need it -->
+		<link rel="stylesheet" href="css/app.css">
+	</head>
+	<body>
+		<section class="todoapp">
+			<!-- 头部组件化 -->
+			 <todos-header :list ='list' @add = 'add'></todos-header>
+			 <!-- 内容部分组件化 -->
+			<todos-main :list='list' @del='del' @update-todo='updateTodo' @state='state'></todos-main>
+			<!-- 底部组件化 -->
+			<todos-footer :list='list' @clear='clear'></todos-footer>
+		</section>
+		<!-- Scripts here. Don't remove ↓ -->
+		<script src="./node_modules/vue/dist/vue.js"></script>
+		<script src="./js/header.js"></script>
+		<script src="./js/main.js"></script>
+		<script src="./js/footer.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>

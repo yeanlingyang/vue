@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-color="color">{{ msg }}</h1>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      // 如果自定义指令只需要提供bind和update，并且逻辑是一样的，可以直接提供一个函数
+      // Vue.directive('名字', 函数)： 这个函数代表bind，也代表update
+
+      // 如果需要指定其他钩子，还需要些{}
+      Vue.directive('color', function(el, binding) {
+        el.style.color = binding.value
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          color: 'red'
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+
+      <hr />
+      <ul>
+        <li><router-link to="/product/1/1000">商品1</router-link></li>
+        <li><router-link to="/product/2">商品2</router-link></li>
+        <li><router-link to="/product/3">商品3</router-link></li>
+        <li><router-link to="/product/10086">商品10086</router-link></li>
+      </ul>
+      <router-view></router-view>
+    </div>
+
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script>
+      /* 
+        $router: 整个路由对象，  push:跳转路由
+        $route: 指的是很当前路由相关的信息
+      */
+
+      const Product = {
+        template: `
+          <div>我是一个product组件</div>
+        `,
+        created() {
+          console.log(this.$route)
+        }
+      }
+      const router = new VueRouter({
+        routes: [{ path: '/product/:id/:aa', component: Product }]
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        router
+      })
+    </script>
+  </body>
+</html>

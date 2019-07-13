@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-color:font="color" v-bind:title="msg">哈哈哈</h1>
+      <h1 v-color:bg="color" v-mybind:title="msg">呵呵呵</h1>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      /* 
+       v-color:font="color" 设置元素的字体颜色
+       v-color:bg="color"   设置元素的背景颜色
+      */
+
+      Vue.directive('color', {
+        bind(el, binding) {
+          if (binding.arg === 'font') {
+            el.style.color = binding.value
+          }
+          if (binding.arg === 'bg') {
+            el.style.backgroundColor = binding.value
+          }
+        },
+        update(el, binding) {
+          if (binding.arg === 'font') {
+            el.style.color = binding.value
+          }
+          if (binding.arg === 'bg') {
+            el.style.backgroundColor = binding.value
+          }
+        }
+      })
+
+      Vue.directive('mybind', {
+        bind(el, binding) {
+          // v-bind指令主要设置元素的属性的
+          // console.log(binding.arg, binding.value)
+          el.setAttribute(binding.arg, binding.value)
+        },
+        update(el, binding) {
+          el.setAttribute(binding.arg, binding.value)
+        }
+      })
+      // 实现mybind指令
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          color: 'red'
+        }
+      })
+    </script>
+  </body>
+</html>

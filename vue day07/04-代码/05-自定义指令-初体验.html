@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" v-focus />
+      <input type="text" />
+      <input type="text" />
+      <input type="text" />
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      // 把获取焦点这个操作封装一个自定义的指令
+      // 1. 定义一个指令(全局指令和局部指令)
+      // 2. 使用这个指令
+      // directive: 指令
+      // 参数1： 指令名
+      // 参数2： 指令的配置项
+      Vue.directive('focus', {
+        // 写指令的5个钩子函数
+        // 表示指令所在的元素插入到页面中。
+        // el: 指的就是当前的元素 指令给谁加的，el就是
+        inserted(el) {
+          el.focus()
+        }
+      })
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <a href="http://www.baidu.com" v-on:click.prevent="clickFn">点我</a>
+      <a href="http://www.baidu.com" v-myon:click.prevent="clickFn">点我</a>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      Vue.directive('myon', {
+        bind(el, binding) {
+          // 给el注册事件， 注册什么事件 binding.arg
+          // el.addEventListener(binding.arg, binding.value)
+          el.addEventListener(binding.arg, function(e) {
+            // 保证传进来的clickFn在每次触发的时候都应该执行
+            binding.value()
+
+            if (binding.modifiers.prevent) {
+              e.preventDefault()
+            }
+            if (binding.modifiers.stop) {
+              e.stopPropagation()
+            }
+          })
+        }
+      })
+
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        methods: {
+          clickFn() {
+            console.log('哈哈哈哈')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-color="color">{{ msg }}</h1>
+      <span v-mytext="msg" v-color="color2">啊哈哈</span>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      // 需求1：v-red指令， 给哪个元素添加，这个元素的字体颜色就变成红色 v-pre v-once
+      // 需求2：v-color="color"  v-text v-html v-show v-if
+
+      Vue.directive('red', {
+        bind(el) {
+          el.style.color = 'red'
+        }
+      })
+
+      Vue.directive('color', {
+        bind(el, binding) {
+          el.style.color = binding.value
+        },
+        update(el, binding) {
+          el.style.color = binding.value
+        }
+      })
+
+      Vue.directive('mytext', {
+        bind(el, binding) {
+          el.innerText = binding.value
+        },
+        update(el, binding) {
+          el.innerText = binding.value
+        }
+      })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue',
+          color: 'green',
+          color2: 'red'
+        }
+      })
+    </script>
+  </body>
+</html>

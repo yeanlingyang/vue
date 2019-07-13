@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Template • TodoMVC</title>
+		<link rel="stylesheet" href="node_modules/todomvc-common/base.css" />
+		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css" />
+		<link rel="stylesheet" href="css/app.css" />
+	</head>
+	<body>
+		<!-- html的属性名和标签名是忽略大小写 -->
+		<section class="todoapp">
+			<todos-header :list="showList" @add="addTodo"></todos-header>
+			<todos-main
+				:list="showList"
+				@del="delTodo"
+				@change-state="changeState"
+				@update-todo="updateTodo"
+			></todos-main>
+			<todos-footer :list="showList" @clear-todo="clearTodo"></todos-footer>
+		</section>
+
+		<script src="node_modules/vue/dist/vue.js"></script>
+		<script src="node_modules/vue-router/dist/vue-router.js"></script>
+		<script src="node_modules/todomvc-common/base.js"></script>
+		<script src="js/header.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/footer.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
