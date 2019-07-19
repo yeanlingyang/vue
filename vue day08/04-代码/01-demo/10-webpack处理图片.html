@@ -1,0 +1,17 @@
+<!-- 
+
+  1. 下载  yarn add url-loader file-loader -D
+  2. 配置规则
+    {
+      test: /\.(png|jpe?g|gif)$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8 * 1024
+          }
+        }
+      ]
+    }
+
+-->

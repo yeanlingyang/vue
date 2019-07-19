@@ -1,0 +1,22 @@
+<!-- 
+
+  早期的npm安装包的时候，必须加上--save  简写 -S才会把包的记录添加到 dependences中
+  在npm5之后，--save变成了默认值。
+  npm i jquery --save;    
+  npm i express -S;
+
+  --save-dev: -D  : 安装的依赖包作为开发阶段的依赖
+  npm i jquery --save-dev;
+  npm i jquery -D;
+
+  yarn add jquery -D;  yarn中不识别--save-dev, 只识别-D 
+
+  安装的包记录到  devDependencies
+
+  dependences： 项目的依赖，webpack进行打包，
+  devDependencies: 项目开发阶段的依赖，真正上线是不需要的
+
+
+  以后如果安装的包开发阶段依赖的都应该加上 -D
+  
+-->

@@ -1,0 +1,33 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1562319377394'); /* IE9 */
+  src: url('iconfont.eot?t=1562319377394#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPUAAsAAAAAFVAAAAOIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDGgqdaJcjATYCJAMUCwwABCAFhG0HZhs1EREVnFfIfiTGtmjyVU5fRRPtzQTPl858X7ty5NUxKgBEcoDsEBXlAU8fQCgBO6wUAJubIX+6Px+hWBL7y09bVlrKSi9Ngf/jXtXM84DNZ8l2mmtQQrkAhgMUrI09SBZIkT8FO5dAQahY4A66ixgUpLe1IYChgBbIgEEjJuCgAXKRy1YsXTwXJ2NANxAERx2qmFMjJ7BxrMPWfeA4v3z5TjtxwMJWgCnHLBq4gD6fCj4VKz/wmUFRCKezAcZ8oIAWgAaZVumYgIpkLbjCVDk0TZrlWvZ9Kg4CiikQbJYvOyzU8DteCKCIk/F95PqahJgGgU+FNFjwqUiPulChLPoYCpuezYDsAbUKQpGpBFw2F6LmDK4FnnM4rEe/xnlhaZCzV/9tdfZ2R32u21K3SH/E50Vf7X0Ze77nxezoiz3PYy/3vpoST9xhtvLEf3zkaeTZJndiYrQEP21KuYmbkOa78SRUlUskd/I0M7MFYh/SPivNPRiqmrenX20Vab64ZwlMiI8+2WK72px5m6vNtOgTLL/Jgl6lIpN3t45MI5HM6XWujPeRBSATMFIm4/Wq+04fMuhDuoyQcllwJnbnThZiiAbV///P+SHTcHf5hHIe5dibfvNSByQPaDug/eGSWOPxW1K2ppip51O3t+vVcGC6Mb8m4aV6aae7Lr3Yf1Iw0Wvf6Z0meUDqXf3DTJ9Ua1zS7Ejz9t18r71X6l3MzP6QnJPQ9FqC17bblX/lPMuQ4+cvL6e8JHgSjfdcCoBS8JWszP90e3Zij9+OqwF4M7B7Mp8w8DXKBxysAcJfmLBjm/bFwGhrtxkL3Eabb8wFmEZmYBgCgCeFj4oqvXMpCA7pCVjUIx8UDg3QGt8CbFw6QAiH3mBozuD5XVJZh0J0GGjGfgmEJKrAIoFLoEjiAVrjP4BNBj8hRJIoMEyS1CW6NBKXPVwZK8EW6j/YhmaNzHIQ5S80Yaw4LebEH7K3YcjiNJ9+4ow8xTR+MbmIBs00wUNaH44jgWPqsZG4E3FFkuiqU4obmqIDV8ZKsAXqP2AbmjXtLofCxb/QhLHihpYe9w/Z2/6BjJi0A/qpmDu13MrwfjE5IlodTzNNwEO24QgTBLjq0XpsJKYbEHMFidJJd1XEy6umd9wDGMDSbbFEiRZbQlzW4UQLqsZyM7I9UpDRzmffkXN2NqqpWHbShalWwR1EXkvrHEU=') format('woff2'),
+  url('iconfont.woff?t=1562319377394') format('woff'),
+  url('iconfont.ttf?t=1562319377394') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1562319377394#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-remove_circle_outlin:before {
+  content: "\e61e";
+}
+
+.icon-shopping_cart:before {
+  content: "\e61f";
+}
+
+.icon-thumb_up:before {
+  content: "\e620";
+}
+
+.icon-thumb_down:before {
+  content: "\e621";
+}
+
